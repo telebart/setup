@@ -1,0 +1,14 @@
+Config { overrideRedirect = False
+       , font = "xft:Roboto:size=12:style=Bold:antialias=true, Noto Sans CJK JP:size=12:antialias=true"
+       , additionalFonts = ["xft:mononoki Nerd Font:size=12:style=Bold"]
+       , position = TopW L 100
+       , bgColor = "#282c34"
+       , fgColor = "#cccccc" 
+       , alpha   = 100
+       , commands = [
+            Run XMonadLog
+            , Run Date "%a %d.%m.%y %H:%M" "date" 600
+            , Run Alsa "default" "Master" ["-t", "<volumestatus>"]
+            ]
+       , template = "%XMonadLog%}%date% %alsa:default:Master%{"
+}
