@@ -3,11 +3,15 @@
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-# History in cache directory:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE="$XDG_STATE_HOME"/zsh/history
-HISTCONTROL=ignoreboth:erasedups
+export SAVEHIST=10000
+export HISTSIZE=10000
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
+
+setopt inc_append_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt inc_append_history
 
 autoload -U compinit && compinit -u
 zstyle ':completion:*' menu select
@@ -22,7 +26,6 @@ if [ -d "$HOME/.local/bin" ] ;
 fi
 
 [[ -f "$ZDOTDIR"/zaliases ]] && . "${ZDOTDIR}/zaliases"
-eval "$(fnm env)"
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
