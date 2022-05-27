@@ -35,7 +35,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_w), spawn "brave")
     , ((modm, xK_f), sendMessage $ Toggle "Full")
     , ((modm .|. shiftMask, xK_w), spawn "brave --incognito")
-    , ((modm .|. shiftMask, xK_q), spawn "arcolinux-logout")
+    , ((modm .|. shiftMask, xK_q), spawn "archlinux-logout")
     , ((controlMask .|. mod1Mask, xK_x), spawn "xkill")
     --Layout
     , ((modm, xK_space),  sendMessage NextLayout)
@@ -106,7 +106,7 @@ myManageHook = composeAll . concat $
     , [resource =? i --> doIgnore | i <- myIgnores]
     , [namedScratchpadManageHook scratchpads]]
     where
-    myCFloats = ["Galculator", "spotify", "mpv", "Gimp", "Steam", "Pavucontrol", "Xmessage", "MPlayer"]
+    myCFloats = ["Galculator", "mpv", "Gimp", "Steam", "Pavucontrol", "Xmessage", "MPlayer"]
     myTFloats = ["Downloads", "Save As..."]
     myIgnores = ["desktop_window"]
     myRFloats = []
@@ -116,7 +116,7 @@ myLayout = smartBorders . toggleLayouts Full $ tiled
     tiled    = Tall nmaster delta ratio
     nmaster  = 1      -- Default number of windows in the master pane
     ratio    = 1/2    -- Default proportion of screen occupied by master pane
-    delta    = 1/100  -- Percent of screen to increment by when resizing panes
+    delta    = 2/100  -- Percent of screen to increment by when resizing panes
 
 myXmobarPP :: PP
 myXmobarPP = do
