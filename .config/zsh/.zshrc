@@ -26,8 +26,30 @@ if [ -d "$HOME/.local/bin" ] ;
 fi
 
 [[ -f "$ZDOTDIR"/zaliases ]] && . "${ZDOTDIR}/zaliases"
+[ -f "/home/l/.ghcup/env" ] && source "/home/l/.ghcup/env" # ghcup-env
 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# pnpm
+export PNPM_HOME="/home/l/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
 
-source /home/l/.config/broot/launcher/bash/br
+# fnm
+export PATH=/home/l/.fnm:$PATH
+eval "`fnm env`"
+
+[ -f "/home/l/.ghcup/env" ] && source "/home/l/.ghcup/env" # ghcup-env
+
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  exec startx
+fi
+
+# bun completions
+[ -s "/home/l/.bun/_bun" ] && source "/home/l/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/vim"
+plug "zap-zsh/fzf"
+plug "zsh-users/zsh-syntax-highlighting"

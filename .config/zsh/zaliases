@@ -12,10 +12,10 @@ alias free="free -mh"
 alias grep='grep --color=auto'
 alias ip='ip -c'
 alias jctl="journalctl -p 3 -xb"
-alias la='exa -a'
+alias la='exa -aH'
 alias lf='lf-ueberzug'
-alias ll='exa -l'
-alias lla='exa -la'
+alias ll='exa -lH'
+alias lla='exa -laH'
 alias ls='exa'
 alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -45,3 +45,8 @@ alias yta-opus="yt-dlp --extract-audio --audio-format opus "
 alias yta-vorbis="yt-dlp --extract-audio --audio-format vorbis "
 alias yta-wav="yt-dlp --extract-audio --audio-format wav "
 alias ytv-best="yt-dlp -f bestvideo+bestaudio "
+
+alias lg="lazygit"
+alias hx="helix"
+
+alias n="nvim ."

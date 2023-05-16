@@ -1,14 +1,16 @@
-Config { overrideRedirect = False
-       , font = "xft:Roboto:size=12:style=Bold:antialias=true, Noto Sans CJK JP:size=12:antialias=true"
-       , additionalFonts = ["xft:mononoki Nerd Font:size=12:style=Bold"]
-       , position = TopW L 100
-       , bgColor = "#282c34"
-       , fgColor = "#cccccc" 
-       , alpha   = 100
+Config { overrideRedirect = True
+       , font = "xft:Roboto:style=bold:size=12,Noto Sans CJK JP:style=bold:size=12,mononoki Nerd Font:style=bold:size=12"
+       , additionalFonts = ["mononoki Nerd Font:style=bold:size=12"]
+       , position = TopH 20
+       --, bgColor = "#282c34"
+       , bgColor = "#111"
+       , fgColor = "#cccccc"
+       , alpha   = 225
+       , border = NoBorder
        , commands = [
             Run XMonadLog
+            , Run Com "razerbattery" [] "razerbattery" 600
             , Run Date "%a %d.%m.%y %H:%M" "date" 600
-            , Run Alsa "default" "Master" ["-t", "<volumestatus>"]
             ]
-       , template = "%XMonadLog%}%date% %alsa:default:Master%{"
+       , template = "%XMonadLog%}%date% %razerbattery%{"
 }
