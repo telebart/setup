@@ -23,20 +23,23 @@ import XMonad.Util.NamedScratchpad
 import XMonad.Hooks.EwmhDesktops
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-    [ ((modm, xK_Return), spawn "alacritty")
+    [ ((modm, xK_Return), spawn "wezterm")
     , ((modm, xK_e), spawn "thunar")
-    , ((modm .|. shiftMask, xK_e), spawn "alacritty -e lf-ueberzug")
+    , ((modm .|. shiftMask, xK_e), spawn "wezterm -e lf")
     , ((modm, xK_m), namedScratchpadAction scratchpads "cmus")
-    , ((modm .|. shiftMask, xK_m), namedScratchpadAction scratchpads "spotify")
+    --, ((modm .|. shiftMask, xK_m), namedScratchpadAction scratchpads "spotify")
+    , ((modm .|. shiftMask, xK_m), namedScratchpadAction scratchpads "qobuz")
     --, ((modm, xK_p), spawn "dmenu_run -fn 'size=15'")
     , ((modm, xK_p), spawn "rofi -show run")
     , ((modm .|. shiftMask, xK_p), spawn "dmenu_run")
-    , ((modm, xK_o), spawn "alacritty -e btop")
+    , ((modm, xK_o), spawn "wezterm -e btop")
     , ((modm, xK_q), kill)
     , ((modm, xK_r), spawn "xmonad --restart")
-    , ((modm, xK_w), spawn "brave")
+    -- , ((modm, xK_w), spawn "chromium")
+    , ((modm, xK_w), spawn "firefox --new-window")
     , ((modm, xK_f), sendMessage $ Toggle "Full")
-    , ((modm .|. shiftMask, xK_w), spawn "brave --incognito")
+    -- , ((modm .|. shiftMask, xK_w), spawn "chromium --incognito")
+    , ((modm .|. shiftMask, xK_w), spawn "firefox --private-window --new-window")
     , ((modm .|. shiftMask, xK_q), spawn "archlinux-logout")
     , ((controlMask .|. mod1Mask, xK_x), spawn "xkill")
     --Layout
@@ -67,16 +70,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     , ((0, xK_Print), spawn "scrot -q 100")
     , ((shiftMask, xK_Print), spawn "flameshot gui")
-    , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle")
-    --, ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 2%-")
-    --, ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 2%+")
-    --, ((controlMask .|. mod1Mask, xK_j), spawn "amixer -q set Master 2%- unmute")
-    --, ((controlMask .|. mod1Mask, xK_k), spawn "amixer -q set Master 2%+ unmute")
-    , ((0, xF86XK_AudioMute), spawn "pamixer -t")
-    , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 2 --unmute --allow-boost")
-    , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 2 --unmute --allow-boost")
-    , ((controlMask .|. mod1Mask, xK_j), spawn "pamixer -d 2 --unmute --allow-boost")
-    , ((controlMask .|. mod1Mask, xK_k), spawn "pamixer -i 2 --unmute --allow-boost")
+    , ((0, xF86XK_AudioMute), spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+    , ((0, xF86XK_AudioLowerVolume), spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && wpctl set-mute @DEFAULT_AUDIO_SINK@ 0")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "wpctl set-volume -l 2 @DEFAULT_AUDIO_SINK@ 2%+ && wpctl set-mute @DEFAULT_AUDIO_SINK@ 0")
+    , ((controlMask .|. mod1Mask, xK_j), spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && wpctl set-mute @DEFAULT_AUDIO_SINK@ 0")
+    , ((controlMask .|. mod1Mask, xK_k), spawn "wpctl set-volume -l 2 @DEFAULT_AUDIO_SINK@ 2%+ && wpctl set-mute @DEFAULT_AUDIO_SINK@ 0")
     , ((controlMask .|. mod1Mask, xK_i), spawn "playerctl play-pause")
     , ((controlMask .|. mod1Mask, xK_l), spawn "playerctl next")
     , ((controlMask .|. mod1Mask, xK_h), spawn "playerctl previous")
@@ -96,7 +94,7 @@ main = xmonad
      $ def { modMask = mod4Mask
             , layoutHook = myLayout
             , manageHook = myManageHook
-            , terminal = "alacritty"
+            , terminal = "wezterm"
             , focusFollowsMouse  = True
             , clickJustFocuses = False
             , borderWidth = 0
@@ -115,8 +113,8 @@ myManageHook = composeAll . concat $
     , [resource =? i --> doIgnore | i <- myIgnores]
     , [namedScratchpadManageHook scratchpads]]
     where
-    myCFloats = ["Galculator", "mpv", "Steam", "Gimp", "Pavucontrol", "Xmessage", "MPlayer", "easyeffects"]
-    myTFloats = ["Downloads", "Save As..."]
+    myCFloats = ["Galculator", "mpv", "Pavucontrol", "Xmessage", "MPlayer", "easyeffects"]
+    myTFloats = ["Downloads", "Save As...", "steam", "Gimp"]
     myIgnores = ["desktop_window"]
     myRFloats = []
 
@@ -148,7 +146,8 @@ myXmobarPP = do
     yellow   = xmobarColor "#f1fa8c" ""
     red      = xmobarColor "#ff5555" ""
 
-spFloatingCenter = customFloating $ W.RationalRect 0.05 0.05 0.95 0.95
+spFloatingCenter = customFloating $ W.RationalRect 0.05 0.05 0.90 0.90
 
-scratchpads = [ NS "cmus" "alacritty -t cmus -e cmus" (title =? "cmus") spFloatingCenter
-              , NS "spotify" "spotify" (className =? "Spotify") spFloatingCenter ]
+-- scratchpads = [ NS "cmus" "alacritty --class cmus -e cmus" (className =? "cmus") spFloatingCenter
+scratchpads = [ NS "cmus" "wezterm -e --class cmus cmus" (className =? "cmus") spFloatingCenter
+              , NS "qobuz" "qobuz" (className =? "qobuz") spFloatingCenter ]

@@ -1,8 +1,10 @@
+import:
+  - /home/l/.config/alacritty/rose-pine.yml
 window:
   padding:
     x: 6
     y: 14
-  opacity: 0.9
+  opacity: 0.92
 scrolling:
   history: 50000
 font:
@@ -22,28 +24,6 @@ font:
   offset:
     x: 0
     y: -1
-colors:
-  normal:
-    black:   '#3f3f3f'
-    red:     '#cc0000'
-    green:   '#4e9a06'
-    yellow:  '#c4a000'
-    blue:    '#94bff3'
-    magenta: '#85678f'
-    cyan:    '#06989a'
-    white:   '#dcdccc'
-  bright:
-    black:   '#545454'
-    red:     '#fc5454'
-    green:   '#8ae234'
-    yellow:  '#fce94f'
-    blue:    '#94bff3'
-    magenta: '#b294bb'
-    cyan:    '#93e0e3'
-    white:   '#ffffff'
-  primary:
-   background: '#000000'
-   foreground: '#F9F9F9'
 
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 

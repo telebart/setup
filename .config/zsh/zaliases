@@ -12,11 +12,11 @@ alias free="free -mh"
 alias grep='grep --color=auto'
 alias ip='ip -c'
 alias jctl="journalctl -p 3 -xb"
-alias la='exa -aH'
-alias lf='lf-ueberzug'
-alias ll='exa -lH'
-alias lla='exa -laH'
-alias ls='exa'
+alias la='eza -aH'
+# alias lf='lf-ueberzug'
+alias ll='eza -lH'
+alias lla='eza -laH'
+alias ls='eza'
 alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pacman.d/mirrorlist"
@@ -31,7 +31,7 @@ alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias ram='rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
 alias rg="rg --sort path"
 alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
-alias strutLower="xdo lower $(xwininfo -name xmobar | rg 'Window id' | cut -d ' ' -f4)"
+#alias strutLower="xdo lower $(xwininfo -name xmobar | rg 'Window id' | cut -d ' ' -f4)"
 alias sysfailed="systemctl list-units --failed"
 alias unhblock="hblock -S none -D none"
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -50,3 +50,5 @@ alias lg="lazygit"
 alias hx="helix"
 
 alias n="nvim ."
+
+alias sxiv="nsxiv -a"

@@ -1,7 +1,6 @@
 Config { overrideRedirect = True
-       , font = "xft:Roboto:style=bold:size=12,Noto Sans CJK JP:style=bold:size=12,mononoki Nerd Font:style=bold:size=12"
-       , additionalFonts = ["mononoki Nerd Font:style=bold:size=12"]
-       , position = TopH 20
+       , font = "Roboto bold 12"
+       , position = TopH 28
        --, bgColor = "#282c34"
        , bgColor = "#111"
        , fgColor = "#cccccc"
@@ -10,7 +9,8 @@ Config { overrideRedirect = True
        , commands = [
             Run XMonadLog
             , Run Com "razerbattery" [] "razerbattery" 600
-            , Run Date "%a %d.%m.%y %H:%M" "date" 600
+            , Run Date "%a %d.%m.%y %H:%M" "date" 100
             ]
-       , template = "%XMonadLog%}%date% %razerbattery%{"
+       --, template = "%XMonadLog%}%date% %razerbattery%{"
+       , template = "%XMonadLog%}%date%{"
 }
