@@ -1,0 +1,9 @@
+[submodule "home/.config/xmonad/xmonad"]
+	path = home/.config/xmonad/xmonad
+	url = https://github.com/xmonad/xmonad
+[submodule "home/.config/xmonad/xmonad-contrib"]
+	path = home/.config/xmonad/xmonad-contrib
+	url = https://github.com/xmonad/xmonad-contrib
+[submodule "home/.config/xmonad/xmobar"]
+	path = home/.config/xmonad/xmobar
+	url = https://codeberg.org/xmobar/xmobar

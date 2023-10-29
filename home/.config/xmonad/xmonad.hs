@@ -8,7 +8,7 @@ import XMonad.Actions.FloatSnap
 import XMonad.Actions.WithAll(sinkAll)
 
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.DynamicProperty
+import XMonad.Hooks.OnPropertyChange
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar

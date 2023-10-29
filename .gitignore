@@ -1,1 +1,6 @@
 .config/nvim/.gitignore
+.config/xmonad/.stack-work
+.config/xmonad/xmobar
+.config/xmonad/xmonad
+.config/xmonad/xmonad-contrib
+home/.config/xmonad/.stack-work

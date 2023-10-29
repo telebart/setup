@@ -5,6 +5,7 @@ PS1="%B%{$fg[magenta]%}%~ %{$fg[yellow]%}$%b "
 export SAVEHIST=10000
 export HISTSIZE=10000
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
+export RIPGREP_CONFIG_PATH="$HOME"/ripgrep/rgrc
 
 setopt inc_append_history
 setopt hist_expire_dups_first
