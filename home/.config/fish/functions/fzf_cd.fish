@@ -1,7 +1,6 @@
 function fzf_cd
   set selection (fd . -td -H \
   -E Games \
-  -E .cache \
   -E .mozilla \
   -E Steam \
   -E heroic \
@@ -10,10 +9,18 @@ function fzf_cd
   -E BraveSoftware \
   -E chromium \
   -E Library \
-  -E node_modules \
-  ~ | sed -E "s|^$HOME(/repos/setup/home)?|~|" | fzf --scheme=path --reverse)
-  if test "$selection" != ""
-    cd (echo $selection | sed "s|~|$HOME|")
+  -E '**/node_modules/**' \
+  -E .npm \
+  -E 'go/go*' \
+  -E 'go/pkg' \
+  -E '.rustup/*' \
+  -E .cargo \
+  -E .aws-sam \
+  -E .tldrc \
+  -E '**/*cache/**' \
+  ~ | sed -E "s|^$HOME(/repos/setup/home)?|~|" | fzf --scheme=path --reverse | sed "s|~|$HOME|")
+  if test -d $selection
+    cd $selection
     commandline -f repaint
   end
 end
