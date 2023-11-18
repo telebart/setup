@@ -18,7 +18,7 @@ function fzf_cd
   -E .aws-sam \
   -E .tldrc \
   -E '**/*cache/**' \
-  ~ | sed -E "s|^$HOME(/repos/setup/home)?|~|" | fzf --scheme=path --reverse | sed "s|~|$HOME|")
+  ~ | sed -E "s|^$HOME(/repos/setup/home)?|~|" | fzf --scheme=path --reverse|sed "s|~|$HOME|")
   if test -d $selection
     cd $selection
     commandline -f repaint

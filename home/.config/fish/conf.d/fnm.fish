@@ -1,3 +1,2 @@
 # fnm
-set PATH "/home/l/.local/share/fnm" $PATH
-fnm env | source
+fnm env --use-on-cd --log-level quiet --shell fish | source

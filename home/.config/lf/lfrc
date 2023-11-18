@@ -1,3 +1,5 @@
+# vim: ft=sh
+
 set shellopts '-eu'
 set shell bash
 
