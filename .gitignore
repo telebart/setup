@@ -4,3 +4,10 @@
 .config/xmonad/xmonad
 .config/xmonad/xmonad-contrib
 home/.config/xmonad/.stack-work
+home/.config/cmus/playlists/default
+home/.config/cmus/cache
+home/.config/cmus/command-history
+home/.config/cmus/lib.pl
+home/.config/cmus/search-history
+home/.config/fish/completions/bun.fish
+home/.config/fish/fish_variables

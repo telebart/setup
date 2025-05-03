@@ -1,6 +1,6 @@
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        exec startx -- -keeptty
+        exec Hyprland
     end
 end
 
@@ -17,20 +17,27 @@ end
 
 set -gx EDITOR nvim
 set -gx RIPGREP_CONFIG_PATH $HOME/.config/ripgrep/rgrc
-set -gx GOPATH (go env | grep GOPATH)
+set -gx GOPATH $HOME/go
+
+set -eU MANROFFOPT
+set -gx MANPAGER "bat"
 fish_add_path -p $GOPATH/bin
 fish_add_path -p $HOME/.local/bin
+fish_add_path -p /home/l/.bun/bin/
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/l/.ghcup/bin # ghcup-env
 
-abbr --add pacman-cleanup 'sudo pacman -Rns $(pacman -Qtdq)'
-abbr --add la 'eza -aH'
-abbr --add ll 'eza -lH'
-abbr --add lla 'eza -laH'
-abbr --add ls 'eza'
-abbr --add mirrorx "sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-abbr --add yta-best "yt-dlp --extract-audio --audio-format best "
-abbr --add ytv-best "yt-dlp -f bestvideo+bestaudio "
-abbr --add lg "lazygit"
-abbr --add hx "hel x"
-abbr --add n "nvim ."
-abbr --add sxiv "nsxiv -a"
+alias pacman-cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias la='eza -aH'
+alias ll='eza -lH'
+alias lla='eza -laH'
+alias ls='eza'
+alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
+alias yta-best="yt-dlp --extract-audio --audio-format best "
+alias ytv-best="yt-dlp -f bestvideo+bestaudio "
+alias lg="lazygit"
+alias hx="helix"
+alias n="nvim ."
+alias sxiv="nsxiv -a"
+alias wttr="curl -s --compressed \"v2.wttr.in/espoo?FQ\""
+alias cat="bat --paging=never"
+alias less="bat"
